@@ -1,4 +1,4 @@
-// import {quizData} from "./quizData"
+import { quizData } from "./quizData";
 
 // 質問文
 const questionElm = document.getElementById("question");
@@ -27,11 +27,9 @@ const quizHeaderElm: HTMLElement | null =
 const resultsConElm = document.getElementById("results-container");
 const resultsElm = document.getElementById("results");
 
-loadQuiz();
-
-function loadQuiz() {
+const loadQuiz = (): void => {
   // 問題を取得
-  const currentQuizData = quizData[currentQuiz];
+  const currentQuizData = () => quizData[currentQuiz];
 
   // 質問文を表示
   if (questionElm) {
@@ -44,38 +42,79 @@ function loadQuiz() {
     c_text.innerText = currentQuizData.c;
     d_text.innerText = currentQuizData.d;
   }
-}
+};
 
-function getAnswered() {
+const getAnswered = (): string => {
   // 選択したボタンのvalueを返す
   return document.quizForm.answer.value;
-}
+};
 
-function showResults(results: string) {
+const showResults = (results: string): void => {
   if (quizHeaderElm && submitBtn && resultsConElm && resultsElm) {
     quizHeaderElm.style.display = "none";
     submitBtn.style.display = "none";
     resultsConElm.style.display = "block";
     resultsElm.innerText = results;
   }
-}
+};
 
-function showQuiz() {
+const showQuiz = (): void => {
   if (quizHeaderElm && submitBtn && resultsConElm) {
     quizHeaderElm.style.display = "block";
     submitBtn.style.display = "block";
     resultsConElm.style.display = "none";
   }
-}
+};
 
-// 解答を取得
-// 回答している
-// 正誤判定
+const checkScore = (): string => {
+  if (score == quizData.length) {
+    return "全問正解！おめでとう！";
+  } else {
+    return "もう一度挑戦してみよう！";
+  }
+};
 
-// ラジオボタンの選択を解除する
+submitBtn?.addEventListener("click", (event) => {
+  event.preventDefault();
 
-// 次の問題へ進む
+  // 解答を取得
+  const answer = getAnswered();
 
-// まだ問題が残っている
+  // 回答している
+  if (answer) {
+    // 正誤判定
+    if (answer === quizData[currentQuiz].correct) {
+      showResults("正解！");
 
-// 全ての問題に解答した
+      score++;
+      console.log(score);
+    } else {
+      showResults("残念...");
+    }
+
+    // ラジオボタンの選択を解除する
+    if (document.getElementById(answer)) {
+      document.getElementById(answer).checked = false;
+    }
+  }
+});
+
+nextQuizBtn?.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  // 次の問題へ進む
+  currentQuiz++;
+
+  // まだ問題が残っている
+  if (currentQuiz < quizData.length) {
+    // 次の問題を読み込む
+    loadQuiz();
+
+    showQuiz();
+
+    // 全ての問題に解答した
+  } else {
+    alert(checkScore());
+    window.location.reload();
+  }
+});
