@@ -22,7 +22,8 @@ let score = 0;
 const nextQuizBtn = document.getElementById("next-quiz");
 
 //
-const quizHeaderElm = document.getElementById("quiz-header");
+const quizHeaderElm: HTMLElement | null =
+  document.getElementById("quiz-header");
 const resultsConElm = document.getElementById("results-container");
 const resultsElm = document.getElementById("results");
 
@@ -30,19 +31,43 @@ loadQuiz();
 
 function loadQuiz() {
   // 問題を取得
-  const currentQuizData = quizDataJp[currentQuiz];
+  const currentQuizData = quizData[currentQuiz];
 
   // 質問文を表示
-  questionElm.innerText = currentQuizData.question;
-
+  if (questionElm) {
+    questionElm.innerText = currentQuizData.question;
+  }
   // 選択肢を表示
-  a_text.innerText = currentQuizData.a;
-  b_text.innerText = currentQuizData.b;
-  c_text.innerText = currentQuizData.c;
-  d_text.innerText = currentQuizData.d;
+  if (a_text && b_text && c_text && d_text) {
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
+  }
 }
 
-// 選択したボタンのvalueを返す
+function getAnswered() {
+  // 選択したボタンのvalueを返す
+  return document.quizForm.answer.value;
+}
+
+function showResults(results: string) {
+  if (quizHeaderElm && submitBtn && resultsConElm && resultsElm) {
+    quizHeaderElm.style.display = "none";
+    submitBtn.style.display = "none";
+    resultsConElm.style.display = "block";
+    resultsElm.innerText = results;
+  }
+}
+
+function showQuiz() {
+  if (quizHeaderElm && submitBtn && resultsConElm) {
+    quizHeaderElm.style.display = "block";
+    submitBtn.style.display = "block";
+    resultsConElm.style.display = "none";
+  }
+}
+
 // 解答を取得
 // 回答している
 // 正誤判定
