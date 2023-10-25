@@ -1,5 +1,13 @@
 import { quizData } from "./quizData";
 
+type currentQuizData = {
+  question: string;
+  a: string;
+  b: string;
+  c: string;
+  d: string;
+};
+
 // 質問文
 const questionElm = document.getElementById("question");
 
@@ -44,10 +52,8 @@ const loadQuiz = (): void => {
   }
 };
 
-const getAnswered = (): string => {
-  // 選択したボタンのvalueを返す
-  return document.quizForm.answer.value;
-};
+// 選択したボタンのvalueを返す
+const getAnswered = (): string => document.quizForm.answer.value;
 
 const showResults = (results: string): void => {
   if (quizHeaderElm && submitBtn && resultsConElm && resultsElm) {
@@ -93,9 +99,7 @@ submitBtn?.addEventListener("click", (event) => {
     }
 
     // ラジオボタンの選択を解除する
-    if (document.getElementById(answer)) {
-      document.getElementById(answer).checked = false;
-    }
+    document.getElementById("answer").checked = false;
   }
 });
 
