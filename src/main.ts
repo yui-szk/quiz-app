@@ -1,13 +1,5 @@
 import { quizData } from "./quizData";
 
-type currentQuizData = {
-  question: string;
-  a: string;
-  b: string;
-  c: string;
-  d: string;
-};
-
 // 質問文
 const questionElm = document.getElementById("question");
 
@@ -37,23 +29,23 @@ const resultsElm = document.getElementById("results");
 
 const loadQuiz = (): void => {
   // 問題を取得
-  const currentQuizData = () => quizData[currentQuiz];
+  // const currentQuizData = () => quizData[currentQuiz];
 
   // 質問文を表示
   if (questionElm) {
-    questionElm.innerText = currentQuizData.question;
+    questionElm.innerText = quizData[currentQuiz].question;
   }
   // 選択肢を表示
   if (a_text && b_text && c_text && d_text) {
-    a_text.innerText = currentQuizData.a;
-    b_text.innerText = currentQuizData.b;
-    c_text.innerText = currentQuizData.c;
-    d_text.innerText = currentQuizData.d;
+    a_text.innerText = quizData[currentQuiz].a;
+    b_text.innerText = quizData[currentQuiz].b;
+    c_text.innerText = quizData[currentQuiz].c;
+    d_text.innerText = quizData[currentQuiz].d;
   }
 };
 
 // 選択したボタンのvalueを返す
-const getAnswered = (): string => document.quizForm.answer.value;
+const getAnswered = (): string => document.forms.quizForm.answer.value;
 
 const showResults = (results: string): void => {
   if (quizHeaderElm && submitBtn && resultsConElm && resultsElm) {
@@ -99,7 +91,7 @@ submitBtn?.addEventListener("click", (event) => {
     }
 
     // ラジオボタンの選択を解除する
-    document.getElementById("answer").checked = false;
+    // document.getElementById(answer).checked = false;
   }
 });
 
