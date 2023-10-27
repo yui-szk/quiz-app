@@ -45,7 +45,13 @@ const loadQuiz = (): void => {
 };
 
 // 選択したボタンのvalueを返す
-const getAnswered = (): string => document.quizForm.answer.value;
+const getAnswered = () => {
+  const formElements = document.forms[0];
+  const value = formElements.answer.value;
+  if (typeof value === "string") {
+    return value;
+  }
+};
 
 const showResults = (results: string): void => {
   if (quizHeaderElm && submitBtn && resultsConElm && resultsElm) {
