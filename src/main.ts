@@ -29,23 +29,23 @@ const resultsElm = document.getElementById("results");
 
 const loadQuiz = (): void => {
   // 問題を取得
-  // const currentQuizData = () => quizData[currentQuiz];
+  const currentQuizData = quizData[currentQuiz];
 
   // 質問文を表示
   if (questionElm) {
-    questionElm.innerText = quizData[currentQuiz].question;
+    questionElm.innerText = currentQuizData.question;
   }
   // 選択肢を表示
   if (a_text && b_text && c_text && d_text) {
-    a_text.innerText = quizData[currentQuiz].a;
-    b_text.innerText = quizData[currentQuiz].b;
-    c_text.innerText = quizData[currentQuiz].c;
-    d_text.innerText = quizData[currentQuiz].d;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
   }
 };
 
 // 選択したボタンのvalueを返す
-const getAnswered = (): string => document.forms.quizForm.answer.value;
+const getAnswered = (): string => document.quizForm.answer.value;
 
 const showResults = (results: string): void => {
   if (quizHeaderElm && submitBtn && resultsConElm && resultsElm) {
@@ -90,8 +90,13 @@ submitBtn?.addEventListener("click", (event) => {
       showResults("残念...");
     }
 
+    const element: HTMLInputElement = <HTMLInputElement>(
+      document.getElementById("answer")
+    );
+    const checked: boolean = element.checked;
+
     // ラジオボタンの選択を解除する
-    // document.getElementById(answer).checked = false;
+    document.getElementById(answer).checked = false;
   }
 });
 
