@@ -28,6 +28,7 @@ const resultsConElm = document.getElementById("results-container");
 const resultsElm = document.getElementById("results");
 
 const loadQuiz = (): void => {
+  console.log("test");
   // 問題を取得
   const currentQuizData = quizData[currentQuiz];
 
@@ -37,12 +38,15 @@ const loadQuiz = (): void => {
   }
   // 選択肢を表示
   if (a_text && b_text && c_text && d_text) {
+    console.log("test");
     a_text.innerText = currentQuizData.a;
     b_text.innerText = currentQuizData.b;
     c_text.innerText = currentQuizData.c;
     d_text.innerText = currentQuizData.d;
   }
 };
+
+loadQuiz();
 
 // 選択したボタンのvalueを返す
 const getAnswered = () => {
@@ -96,13 +100,11 @@ submitBtn?.addEventListener("click", (event) => {
       showResults("残念...");
     }
 
-    const element: HTMLInputElement = <HTMLInputElement>(
-      document.getElementById("answer")
-    );
-    const checked: boolean = element.checked;
-
     // ラジオボタンの選択を解除する
-    document.getElementById(answer).checked = false;
+    const answerElement = document.getElementById(answer);
+    if (answerElement && answerElement instanceof HTMLInputElement) {
+      answerElement.checked = false;
+    }
   }
 });
 
