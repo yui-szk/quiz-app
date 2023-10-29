@@ -37,21 +37,9 @@ const loadQuiz = (): void => {
   }
 
   // 画像を表示
-  const Img = document.getElementById("quizImg");
-  let quizImage = currentQuizData.img;
-
-  const changeImage = (): void => {
-    if (Img instanceof HTMLInputElement) {
-      Img.src = "image" + quizImage + ".png";
-    }
-  };
-
-  if (Img instanceof HTMLInputElement) {
-    console.log(quizImage);
-    console.log(Img.src);
-  }
-
-  changeImage();
+  document
+    .getElementById("quizImg")
+    ?.setAttribute("src", `image${currentQuizData.img}.png`);
 
   // 選択肢を表示
   if (a_text && b_text && c_text && d_text) {
