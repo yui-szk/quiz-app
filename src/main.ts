@@ -80,9 +80,9 @@ const showQuiz = (): void => {
 
 const checkScore = (): string => {
   if (score == quizData.length) {
-    return "全問正解！おめでとう！";
+    return `スコア ${score}/${quizData.length} 全問正解！おめでとう！`;
   } else {
-    return "もう一度挑戦してみよう！";
+    return `スコア ${score}/${quizData.length} もう一度挑戦してみよう！`;
   }
 };
 
