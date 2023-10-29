@@ -28,7 +28,6 @@ const resultsConElm = document.getElementById("results-container");
 const resultsElm = document.getElementById("results");
 
 const loadQuiz = (): void => {
-  console.log("test");
   // 問題を取得
   const currentQuizData = quizData[currentQuiz];
 
@@ -36,9 +35,26 @@ const loadQuiz = (): void => {
   if (questionElm) {
     questionElm.innerText = currentQuizData.question;
   }
+
+  // 画像を表示
+  const Img = document.getElementById("quizImg");
+  let quizImage = currentQuizData.img;
+
+  const changeImage = (): void => {
+    if (Img instanceof HTMLInputElement) {
+      Img.src = "image" + quizImage + ".png";
+    }
+  };
+
+  if (Img instanceof HTMLInputElement) {
+    console.log(quizImage);
+    console.log(Img.src);
+  }
+
+  changeImage();
+
   // 選択肢を表示
   if (a_text && b_text && c_text && d_text) {
-    console.log("test");
     a_text.innerText = currentQuizData.a;
     b_text.innerText = currentQuizData.b;
     c_text.innerText = currentQuizData.c;
