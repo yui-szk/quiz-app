@@ -1,7 +1,11 @@
+import img1 from "../image1.jpg";
+import img2 from "../image2.jpg";
+import img3 from "../image3.jpg";
+
 const quizData = [
   {
     question: "答えは？",
-    img: 1,
+    img: img1,
     a: "いずみ",
     b: "はなみ",
     c: "いかり",
@@ -10,7 +14,7 @@ const quizData = [
   },
   {
     question: "p①②③④⑤⑥⑦ 答えは？",
-    img: 2,
+    img: img2,
     a: "packaged",
     b: "painting",
     c: "parktown",
@@ -19,7 +23,7 @@ const quizData = [
   },
   {
     question: "答えは？",
-    img: 3,
+    img: img3,
     a: "たにん",
     b: "あんぷ",
     c: "はいく",
