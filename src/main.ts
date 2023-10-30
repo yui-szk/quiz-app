@@ -37,9 +37,7 @@ const loadQuiz = (): void => {
   }
 
   // 画像を表示
-  document
-    .getElementById("quizImg")
-    ?.setAttribute("src", `image${currentQuizData.img}.jpg`);
+  document.getElementById("quizImg")?.setAttribute("src", currentQuizData.img);
 
   // 選択肢を表示
   if (a_text && b_text && c_text && d_text) {
