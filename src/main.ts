@@ -1,3 +1,6 @@
+//参考
+//https://github.com/cordelia-sixth/quiz_app_js/tree/main#quiz_app_js
+
 import { quizData } from "./quizData";
 
 // 質問文
