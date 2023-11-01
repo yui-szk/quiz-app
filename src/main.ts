@@ -123,7 +123,7 @@ submitBtn?.addEventListener("click", (event) => {
     // }
 
     if (answerElement instanceof HTMLInputElement) {
-      answerElement.value = " ";
+      answerElement.value = "";
     }
   }
 });
