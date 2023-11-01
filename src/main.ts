@@ -7,10 +7,10 @@ import { quizData } from "./quizData";
 const questionElm = document.getElementById("question");
 
 // 選択肢
-const a_text = document.getElementById("a-text");
-const b_text = document.getElementById("b-text");
-const c_text = document.getElementById("c-text");
-const d_text = document.getElementById("d-text");
+// const a_text = document.getElementById("a-text");
+// const b_text = document.getElementById("b-text");
+// const c_text = document.getElementById("c-text");
+// const d_text = document.getElementById("d-text");
 
 // 送信ボタン
 const submitBtn = document.getElementById("submit");
@@ -43,22 +43,34 @@ const loadQuiz = (): void => {
   document.getElementById("quizImg")?.setAttribute("src", currentQuizData.img);
 
   // 選択肢を表示
-  if (a_text && b_text && c_text && d_text) {
-    a_text.innerText = currentQuizData.a;
-    b_text.innerText = currentQuizData.b;
-    c_text.innerText = currentQuizData.c;
-    d_text.innerText = currentQuizData.d;
-  }
+  //   if (a_text && b_text && c_text && d_text) {
+  //     a_text.innerText = currentQuizData.a;
+  //     b_text.innerText = currentQuizData.b;
+  //     c_text.innerText = currentQuizData.c;
+  //     d_text.innerText = currentQuizData.d;
+  //   }
 };
 
 loadQuiz();
 
 // 選択したボタンのvalueを返す
+// const getAnswered = () => {
+//   const formElements = document.forms[0];
+//   const value = formElements.answer.value;
+//   if (typeof value === "string") {
+//     return value;
+//   }
+// };
+
+const answerElement = document.getElementById("answer-box");
+
 const getAnswered = () => {
-  const formElements = document.forms[0];
-  const value = formElements.answer.value;
-  if (typeof value === "string") {
-    return value;
+  if (answerElement instanceof HTMLInputElement) {
+    const value = answerElement.value;
+    if (typeof value === "string") {
+      return value;
+    }
+    console.log(value);
   }
 };
 
@@ -100,15 +112,18 @@ submitBtn?.addEventListener("click", (event) => {
       showResults("正解！");
 
       score++;
-      console.log(score);
     } else {
       showResults("残念...");
     }
 
     // ラジオボタンの選択を解除する
-    const answerElement = document.getElementById(answer);
-    if (answerElement && answerElement instanceof HTMLInputElement) {
-      answerElement.checked = false;
+    // const answerElement = document.getElementById(answer);
+    // if (answerElement && answerElement instanceof HTMLInputElement) {
+    //   answerElement.checked = false;
+    // }
+
+    if (answerElement instanceof HTMLInputElement) {
+      answerElement.value = " ";
     }
   }
 });
